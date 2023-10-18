@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Firebase_form</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="box">
+            <div class="form">
+                <h2>Login Form</h2>
+                <form>
+                    <div class="inputbox">
+                        <input type="text" value="" id="username" required>
+                        <span>username</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="email" value="" id="email" required>
+                        <span>E-mail</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="phone" required>
+                        <span>Phone Number</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="idea" required>
+                        <span>Idea</span>
+                    </div>
+                    <input type="submit" value="submit" class="sub" id="submit">
+                </form>
+            </div>
+        </div>
+        <script type="module">
+               // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+            import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+  
+  // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyDt9VtMRhBZT3r9p9-ALSVIH_kv_31cedc",
+                authDomain: "food-7e0d9.firebaseapp.com",
+                databaseURL: "https://food-7e0d9-default-rtdb.firebaseio.com",
+                projectId: "food-7e0d9",
+                storageBucket: "food-7e0d9.appspot.com",
+                messagingSenderId: "602670281787",
+                appId: "1:602670281787:web:68bd26f684b9a7ce82d81e",
+            };
+
+  // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+
+   //get ref to database services
+             const db = getDatabase(app);
+
+             document.getElementById("submit").addEventListener('click', function(e){
+              e.preventDefault();
+              set(ref(db, 'user/' + document.getElementById("username").value),
+              {
+   
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                PhoneNumber: document.getElementById("phone").value,
+                idea: document.getElementById("idea").value
+              });
+                alert("Login Sucessfull  !");
+             })
+        </script>
+    </body>
+</html>
